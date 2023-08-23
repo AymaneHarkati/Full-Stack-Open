@@ -1,0 +1,12 @@
+.blog-name {
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  border-color: black;
+}
+.blog-info {
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  border-color: red;
+}
