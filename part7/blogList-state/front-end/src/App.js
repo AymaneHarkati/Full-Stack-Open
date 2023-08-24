@@ -18,6 +18,8 @@ import { saveUser } from "./reducers/userReducers";
 import { Link, Route, Routes, useMatch } from "react-router-dom";
 import userServices from "./services/user";
 import { addComment } from "./reducers/blogRedcuers";
+import Button from "react-bootstrap/Button";
+
 const User = ({ user, blogs }) => {
   if (!user) return <></>;
   const userBlogs = blogs.filter((blog) => blog.user.id === user.id);
@@ -84,9 +86,13 @@ const OneBlog = ({ blog, updateBlog, deleteBlog, addComment }) => {
       {blog.url}
       <br />
       likes {blog.likes}{" "}
-      <button id="like-blog" onClick={() => updateBlog(blog.id, blog)}>
+      <Button
+        variant="info"
+        id="like-blog"
+        onClick={() => updateBlog(blog.id, blog)}
+      >
         like
-      </button>
+      </Button>
       <br />
       {blog.user.username}
       <br />
@@ -95,13 +101,11 @@ const OneBlog = ({ blog, updateBlog, deleteBlog, addComment }) => {
       <button type="submit" onClick={() => addComment(blog, comment)}>
         add comment
       </button>
-      {blog.comments.map((comment) => (
-        <li>{comment}</li>
-      ))}
+      {blog.comments.map((comment) => <li>{comment}</li>)}
       <br />
-      <button id="remove-blog" onClick={() => deleteBlog(blog.id)}>
+      <Button id="remove-blog" onClick={() => deleteBlog(blog.id)}>
         remove
-      </button>
+      </Button>
     </div>
   );
 };
@@ -140,12 +144,12 @@ const App = () => {
         setUsername("");
         setPassword("");
         dispatch(setNotif("connected"));
-        setStyleMsg("validationMessage");
+        setStyleMsg("success");
         setLoginVisible(false);
       })
       .catch(() => {
         dispatch(setNotif(`LogIn Failed`));
-        setStyleMsg("errorMessage");
+        setStyleMsg("danger");
       })
       .finally(() => {
         setTimeout(() => {
@@ -169,7 +173,7 @@ const App = () => {
       dispatch(
         setNotif(`A new blog ${savedBlog.title} by ${savedBlog.author}`),
       );
-      setStyleMsg("validationMessage");
+      setStyleMsg("success");
       setNewBlogForm(false);
       setTimeout(() => {
         dispatch(removeNotif());
@@ -177,7 +181,7 @@ const App = () => {
     } catch (error) {
       console.error("Failed to add blog:", error);
       dispatch(setNotif("Failed To Add Blog"));
-      setStyleMsg("errorMessage");
+      setStyleMsg("danger");
     }
   };
   const handleUpdateBlog = (id, blog) => {
@@ -208,8 +212,8 @@ const App = () => {
   const matchBlog = useMatch("/blogs/:id");
   const blog = matchBlog
     ? state.blog.blogList.find(
-        (blog) => blog.id === String(matchBlog.params.id),
-      )
+      (blog) => blog.id === String(matchBlog.params.id),
+    )
     : null;
 
   const padding = {
@@ -236,13 +240,14 @@ const App = () => {
 
         <div style={hideWhenVisible}>
           <h1>Blogs</h1>
-          <button
+          <Button
+            variant="primary"
             type="submit"
             id="login-form"
             onClick={() => setLoginVisible(true)}
           >
             log-IN
-          </button>
+          </Button>
           <NewBlog
             newBlogForm={newBlogForm}
             setNewBlogForm={setNewBlogForm}

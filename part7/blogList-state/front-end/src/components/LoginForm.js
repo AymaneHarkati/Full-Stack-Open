@@ -1,16 +1,23 @@
 import AddedBlog from "./AddedBlog";
 
-
-const LoginForm = ({handleLogin, username, handleUsernameChange, password, handlePassChange, message, styleMsg, cancel}) => {
-
+const LoginForm = ({
+  handleLogin,
+  username,
+  handleUsernameChange,
+  password,
+  handlePassChange,
+  message,
+  styleMsg,
+  cancel,
+}) => {
   return (
     <>
-      <h1>Log-In </h1>
+      <h1>Log-In</h1>
       <AddedBlog message={message} style={styleMsg} />
       <form onSubmit={handleLogin}>
         username:
         <input
-        id="username"
+          id="username"
           type="text"
           name="username"
           placeholder="username"
@@ -20,8 +27,7 @@ const LoginForm = ({handleLogin, username, handleUsernameChange, password, handl
         <br />
         password :
         <input
-                id="password"
-
+          id="password"
           type="password"
           name="password"
           placeholder="password"
@@ -29,12 +35,15 @@ const LoginForm = ({handleLogin, username, handleUsernameChange, password, handl
           onChange={handlePassChange}
         />
         <br />
-        <button id="log-in-button" type="submit">logIn</button>
+        <button id="log-in-button" type="submit">
+          logIn
+        </button>
       </form>
-      <button type="submit" onClick={cancel}>cancel</button>
-
+      <button type="submit" onClick={cancel}>
+        cancel
+      </button>
     </>
   );
-}
+};
 
-export default LoginForm
+export default LoginForm;
