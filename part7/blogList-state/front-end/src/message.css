@@ -1,0 +1,18 @@
+.validationMessage {
+  color: green;
+  background: grey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.errorMessage {
+  color: red;
+  background: grey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
